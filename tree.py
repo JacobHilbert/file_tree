@@ -7,11 +7,12 @@ class Tree:
 		self.only_dirs=only_dirs
 		self.path_list = list(sorted(deep_contents(top_path,only_dirs)))
 		self.node_list = [ Node(i) for i in self.path_list ]
-		self.node_dict = {}
+		#self.node_dict = {}
 
 	def fill_dict(self):
-		for i,j in zip(self.path_list,self.node_list):
-			self.node_dict[i]=j
+		#for i,j in zip(self.path_list,self.node_list):
+		#	self.node_dict[i]=j
+		self.node_dict={i:j for i,j in zip(self.path_list,self.node_list)}
 
 	def register_nodes_children(self):
 		# register children
