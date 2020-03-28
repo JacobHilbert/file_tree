@@ -15,9 +15,11 @@ class Node:
 	def __str__(self):
 		return "".join(self.splitted)
 	
-	
-	
-	
+	def register_children(self):
+		'''
+		ONLY after all nodes are initialized and the dict operative
+		'''
+		self.children = [ node_dict[i] for i in subdirs(self.path) ] 
 	
 	
 	
