@@ -7,19 +7,16 @@ class Node:
 		self.path = path
 		self.splitted = path.replace("./","").split("/")
 		self.name = self.splitted[-1]
-        self.level = len(self.splitted)-1
-        self.is_last = False
+		self.level = len(self.splitted)-1
+		self.is_last = False
 		self.kind = "directory" if is_dir(self.path) else "file"
+		self.children = []
 	def __repr__(self):
 		return "<{}> {} at <{}>".format(self.name,self.kind,self.path[:-len(self.name)-1])
 	def __str__(self):
 		return "".join(self.splitted)
-	
-	def register_children(self):
-		'''
-		ONLY after all nodes are initialized and the dict operative
-		'''
-		self.children = [ node_dict[i] for i in subdirs(self.path) ] 
-	
-	
-	
+
+
+
+
+
