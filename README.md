@@ -5,7 +5,7 @@ Python package to get the [GNU tree](https://linux.die.net/man/1/tree) functiona
 
 ### from command line
 
-To print a tree of the current directory, including all files:
+To print a tree of the current directory (excluding hidden files and folders):
 
 ```
 $ python -m file_tree
@@ -16,11 +16,17 @@ To print a tree of `./path/to/dir` directory:
 ```
 $ python -m file_tree "./path/to/dir"
 ```
-And to print a **directory** only tree you must add `False` at the end:
+And to print a **directory** only tree you must add `-d`:
 
 ```
-$ python -m file_tree "./path/to/dir" False
+$ python -m file_tree "./path/to/dir" -d
 ```
+
+And to print all files, including the hidden ones, add `-a`
+```
+$ python -m file_tree "./path/to/dir" -a
+```
+
 
 ### prom python
 

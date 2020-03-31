@@ -41,10 +41,12 @@ class Tree:
 		except IndexError: #because can have no children, so children[-1] will send this to hell
 			pass
 
-	def make_tree(self):
+	def make_tree(self,include_hidden=False):
 		self.fill_dict()
 		self.register_nodes_children()
 		for node in self.node_list:
+			node.update_children_status()
 			self.format_node(node)
 		for node in self.node_list:
-			print(node)
+			to_print= "" if (node.is_hidden and not include_hidden) else str(node)+"\n"
+			print(to_print,end="")

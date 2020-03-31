@@ -9,6 +9,7 @@ class Node:
 		self.name = self.splitted[-1]
 		self.level = len(self.splitted)-1
 		self.is_last = False
+		self.is_hidden = self.name.startswith(".")
 		self.kind = "directory" if is_dir(self.path) else "file"
 		self.children = []
 
@@ -17,3 +18,8 @@ class Node:
 
 	def __str__(self):
 		return "".join(self.splitted)
+
+	def update_children_status(self):
+		for child in self.children:
+			if self.is_hidden:
+				child.is_hidden = True
