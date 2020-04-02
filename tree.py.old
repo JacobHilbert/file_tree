@@ -42,6 +42,7 @@ class Tree:
 			pass
 
 	def make_tree(self,include_hidden=False):
+		tree_string=""
 		self.fill_dict()
 		self.register_nodes_children()
 		for node in self.node_list:
@@ -49,4 +50,14 @@ class Tree:
 			self.format_node(node)
 		for node in self.node_list:
 			to_print= "" if (node.is_hidden and not include_hidden) else str(node)+"\n"
-			print(to_print,end="")
+			tree_string+=to_print
+
+		return tree_string
+
+	def print_tree(self,include_hidden=False,file=False):
+		if file==False:
+			print(self.make_tree(include_hidden))
+		else:
+			print(self.make_tree(include_hidden),file=file)
+
+	def export_association(self,include_hidden=):

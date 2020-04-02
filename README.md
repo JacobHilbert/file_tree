@@ -3,47 +3,107 @@ Python package to get the [GNU tree](https://linux.die.net/man/1/tree) functiona
 
 ## Usage
 
-### from command line
 
-To print a tree of the current directory (excluding hidden files and folders):
+## Structure
 
-```
-$ python -m file_tree
-```
+### `utils.py`
 
-To print a tree of `./path/to/dir` directory:
+- `contents(top_path,include_files=True,include_hidden=False)`:
 
-```
-$ python -m file_tree "./path/to/dir"
-```
-And to print a **directory** only tree you must add `-d`:
+  gives the immediate contents of the `top_path` directory. If it's a file, returns `[]`.
 
-```
-$ python -m file_tree "./path/to/dir" -d
-```
+  Args:
 
-And to print all files, including the hidden ones, add `-a`
-```
-$ python -m file_tree "./path/to/dir" -a
-```
+  * `top_path`
+  * `include_files`: If False, gives only directory contents. If True, all contents.
+  * `include_hidden`: If False, exclude all directories and files that begins with `.`
+
+- `deep_contents(top_path,include_files=True,include_hidden=False)`:
+
+  gives the contents of `top_path` at all levels. If it's a file, returns `[]`
+
+  Args same as `contents`
+
+### `node.py`, `Node` class
+
+#### Attributes:
+
+- `path`
+- `splitted`
+- `name`
+- `level`
+- `is_last`
+- `kind`
+- `children`
+
+#### Methods
+
+- `__init__(path)`
+    * Only to set attributes
+- `__repr__()`
+    * "Node {name} on {path}, {len(children)} children"
+- `__str__()`
+    * return the sum of `splitted`
+- `__lt__(other)`
+    * this seems to be enough to make the class work with `sorted`
+    * maybe it will work with sorting kind+path to set apart (**f**)iles and (**d**)irectories.
+
+### `tree.py`, `Tree` class
+
+#### Attributes
+
+- `include_files`
+- `include_hidden`
+- `path_list`
+    - `utils.deep_contents` of `top_path`
+- `node_list`
+- `node_dict`
+
+#### Methods
+
+- `__init__(top_path,include_files=True,include_hidden=False)`
+    - Set attributes
+        - hopefully `utils.deep_contents(...)` will figure this out.
+        - It may be a bug on sorting the nodes...
+        - That includes filling the dict.
+    - Calls `register_children(node)` for each node
+    - Calls `format_node` for each node.
+- `__repr__()`
+    - "Tree rooted on {top}, {nodes} nodes."
+- `__str__()`
+    - Collects all the string form of nodes
+    - Calls `kind_count` and append it at the end.
+- `register_nodes_children()`
+    - only one node.
+    - sort the list **after** created, in accordance to `Node.__lt__` implementation.
+- `format_node(node)`
+    - for the other nodes...
+        - all of them, it takes no time time to rule the others out
+    - compare the paths
+        - and the last children's formatting rule, which may cause an exception: ignore it
+    - format accordingly
+    - run through the current node children
+        - add "tees". More of a Korean /a/ though.
+        - fix last one with an "ell"
+- `export_association()`
+    - run through all nodes, export their children relation, bob's your uncle.
+- `export_dot_graph()`
+    - `NotImplemented` error.
+- `export_tree(file)`
+    - write `Tree.__str__()` to file
 
 
-### prom python
 
-you only need to import the Tree class. For example:
 
-```
->>> from file_tree import Tree
->>> tree = Tree("./path/to/dir",only_dirs=False)
->>> tree.make_tree()
-```
 
-will print the tree with all files.
+
+
+
 
 ## To do
 
-- [ ] Functionality to ignore hidden files and folders
-    -  If name begins with a dot, the `__str__` must be "\r"
+- [x] Functionality to ignore hidden files and folders
+    - Implemented on `Tree.make_tree` `include_hidden` kwarg.
 - [ ] Total count of directories and files
     - define a `kind_list` attribute to Tree class, compare elementwise to "file" and sum the `True`s. That's the number of files.
     - subtract that from the total to get the number of dirs.
@@ -53,9 +113,8 @@ will print the tree with all files.
     - One idea is, given a `Node` object that have more children than allowed, mark the other children as hidden files
         - but then it will not work on th all files mode.
     - maybe we could do just another attribute that messes with `Node.__str__`
-- [ ] Option to save tree on a file.
-    - But you could do `>>`
-    - Though a `Tree.export_tree()` will be appreciated
+- [x] Option to save tree on a file.
+    - Implemented on `Tree.print_tree()`
 - [ ] maybe export in dot format, or mathematica's `Graph` association format...
     - This is easier to do without recursion, since the flatten format of `Graph`: just run through the `Node`s and export their children relationship.
 
