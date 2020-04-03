@@ -3,6 +3,42 @@ Python package to get the [GNU tree](https://linux.die.net/man/1/tree) functiona
 
 ## Usage
 
+### from command line
+
+To print a tree of the current directory (excluding hidden files and folders):
+
+```
+$ python -m file_tree
+```
+
+To print a tree of `./path/to/dir` directory:
+
+```
+$ python -m file_tree "./path/to/dir"
+```
+And to print a **directory** only tree you must add `-d`:
+
+```
+$ python -m file_tree "./path/to/dir" -d
+```
+
+And to print all files, including the hidden ones, add `-a`
+```
+$ python -m file_tree "./path/to/dir" -a
+```
+
+
+### prom python
+
+you only need to import the Tree class. For example:
+
+```
+>>> from file_tree import Tree
+>>> tree = Tree("./path/to/dir",only_dirs=False)
+>>> tree.make_tree()
+```
+
+will print the tree with all files.
 
 ## Structure
 
@@ -44,9 +80,10 @@ Python package to get the [GNU tree](https://linux.die.net/man/1/tree) functiona
     * "Node {name} on {path}, {len(children)} children"
 - `__str__()`
     * return the sum of `splitted`
+- `value()`
+	* return (path without name)+(kind)+(name)
 - `__lt__(other)`
-    * this seems to be enough to make the class work with `sorted`
-    * maybe it will work with sorting kind+path to set apart (**f**)iles and (**d**)irectories.
+	* comparing values sorta works (?)
 
 ### `tree.py`, `Tree` class
 
@@ -80,7 +117,7 @@ Python package to get the [GNU tree](https://linux.die.net/man/1/tree) functiona
     - for the other nodes...
         - all of them, it takes no time time to rule the others out
     - compare the paths
-        - and the last children's formatting rule, which may cause an exception: ignore it
+        - and the last children's formatting rule, which may cause an exception, ignore it
     - format accordingly
     - run through the current node children
         - add "tees". More of a Korean /a/ though.

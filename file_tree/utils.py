@@ -17,7 +17,8 @@ def contents(top_path,include_files=True,include_hidden=False):
     '''
     return [top_path+"/"+i for i in listdir(top_path)
                     if ((is_dir(top_path+"/"+i) or include_files) and
-                        (not is_hidden(top_path+"/"+i) or include_hidden))]
+                        (not is_hidden(top_path+"/"+i) or include_hidden))] \
+						if is_dir(top_path) else []
 
 def deep_contents(top_path,include_files=True,include_hidden=False):
     '''
