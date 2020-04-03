@@ -1,12 +1,31 @@
 # file_tree
 Python package to get the [GNU tree](https://linux.die.net/man/1/tree) functionality without recursion.
 
+## Installation
+
+Download this repository, open a terminal on it, and run:
+
+```
+$ pip install -e .
+```
+
 ## Usage
 
 ### from command line
 
+`python -m file_tree` will print the drectori and file tree structure of the current path.
+
+`python -m file_tree "path/to/dir" -d -h` will print a directory-only (`-d`) path tree includin all hidden paths (`-h`). `-d` and `-h` are combianble.
 
 ### prom python
+
+You only need to import the Tree class:
+
+```python
+>>> from file_tree import Tree
+>>> print(Tree("./path/to/dir",include_files=True,include_hidden=True)) # this will print the tree
+```
+
 
 
 ## Structure
@@ -106,12 +125,6 @@ This very repository:
 >>> print(Tree())
 '''
 file_tree
-├── __pycache__
-│   ├── __init__.cpython-37.pyc
-│   ├── __main__.cpython-37.pyc
-│   ├── contents.cpython-37.pyc
-│   ├── node.cpython-37.pyc
-│   └── tree.cpython-37.pyc
 ├── file_tree
 │   ├── __pycache__
 │   │   ├── __init__.cpython-37.pyc
@@ -123,8 +136,14 @@ file_tree
 │   ├── node.py
 │   ├── tree.py
 │   └── utils.py
+├── file_tree.egg-info
+│   ├── PKG-INFO
+│   ├── SOURCES.txt
+│   ├── dependency_links.txt
+│   └── top_level.txt
 ├── LICENSE
-└── README.md
+├── README.md
+└── setup.py
 
 4 directories.
 16 files.
