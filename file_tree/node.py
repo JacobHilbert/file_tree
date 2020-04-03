@@ -14,12 +14,15 @@ class Node:
 		self.children = []
 
 	def __repr__(self):
-		return "<{}> {} at <{}>".format(self.name,self.kind,self.path[:-len(self.name)-1])
+		return f"Node({self.path})"
 
 	def __str__(self):
-		return "".join(self.splitted)
+		return "".join(self.splitted) if self.path!="." else "."
 
-	def update_children_status(self):
-		for child in self.children:
-			if self.is_hidden:
-				child.is_hidden = True
+	def value(self):
+		# this works!
+		parts=self.path.split("/")
+		return "".join(sum([ ["directory_",i,"/"] for i in parts[:-1] ],[])+[self.kind,"_",self.name])
+
+	def __lt__(self,other):
+		return self.value() < other.value()
