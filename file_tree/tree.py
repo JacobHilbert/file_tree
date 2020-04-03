@@ -21,7 +21,7 @@ class Tree:
 		return "Tree(top_path=\"{}\",include_files={},include_hidden={})".format(self.root,self.include_files,self.include_hidden)
 
 	def __str__(self):
-		return "".join([str(node)+"\n" for node in self.nodes])
+		return "".join([str(node)+"\n" for node in self.nodes])+"\n"+self.kind_count()
 
 
 	def register_children(self,node):

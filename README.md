@@ -81,7 +81,7 @@ will print the tree with all files.
 - `__str__()`
     * return the sum of `splitted`
 - `value()`
-	* return (path without name)+(kind)+(name)
+	* return... the path, except every object has pre-attached its kind. This construct seems to work out the file-dir sorting.
 - `__lt__(other)`
 	* comparing values sorta works (?)
 
@@ -91,10 +91,9 @@ will print the tree with all files.
 
 - `include_files`
 - `include_hidden`
-- `path_list`
-    - `utils.deep_contents` of `top_path`
-- `node_list`
-- `node_dict`
+- `root` (the top_path)
+- `nodes` (node's list)
+- `node_dict` {path:node}
 
 #### Methods
 
@@ -106,7 +105,6 @@ will print the tree with all files.
     - Calls `register_children(node)` for each node
     - Calls `format_node` for each node.
 - `__repr__()`
-    - "Tree rooted on {top}, {nodes} nodes."
 - `__str__()`
     - Collects all the string form of nodes
     - Calls `kind_count` and append it at the end.

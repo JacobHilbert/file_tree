@@ -17,7 +17,7 @@ class Node:
 		return f"Node({self.path})"
 
 	def __str__(self):
-		return "".join(self.splitted)
+		return "".join(self.splitted) if self.path!="." else "."
 
 	def value(self):
 		# this works!
