@@ -34,7 +34,7 @@ class Tree:
 		# run through all other nodes
 		for other in other_nodes:
 			try:
-				if current_node.path in other.path:
+				if current_node.path in other.path and current_node.level != other.level:
 					if current_node.children[-1].path not in other.path:
 						other.splitted[current_node.level] = "│"+(" "*3)
 					else:
