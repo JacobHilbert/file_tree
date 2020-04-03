@@ -22,7 +22,7 @@ class Node:
 	def value(self):
 		# this works!
 		parts=self.path.split("/")
-		return "".join(sum([ ["directory_",i,"/"] for i in parts[:-1] ],[])+[self.kind,"_",self.name])
+		return ("".join(sum([ ["directory_",i,"/"] for i in parts[:-1] ],[])+[self.kind,"_",self.name])).replace(".","")
 
 	def __lt__(self,other):
 		return self.value() < other.value()
