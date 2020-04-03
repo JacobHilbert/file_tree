@@ -63,3 +63,10 @@ class Tree:
 		f"\n{len(files)} files"*(self.include_files) + \
 		f" ({len(hidden_files)} hidden)"*(self.include_files*self.include_hidden) + \
 		"."*(self.include_files)
+
+	def association(self):
+		a=""
+		for node in self.nodes:
+			for child in node.children:
+				a+=f"\"{node.name}\"->\"{child.name}\","
+		return "{"+a[:-1]+"}"

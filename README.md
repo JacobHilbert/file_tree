@@ -108,7 +108,7 @@ You only need to import the Tree class:
     - run through the current node children
         - add "tees". More of a Korean /a/ though.
         - fix last one with an "ell"
-- `export_association()`
+- `association()`
     - run through all nodes, export their children relation, bob's your uncle.
 - `export_dot_graph()`
     - `NotImplemented` error.
