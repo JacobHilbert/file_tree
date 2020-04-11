@@ -11,7 +11,7 @@ $ cd file_tree
 $ pip install -e .
 ```
 
-requires [graphviz](https://github.com/xflr6/graphviz), installed automatically via `pip`.
+requires [graphviz python package](https://github.com/xflr6/graphviz), installed automatically via `pip`, altough the [real graphviz](https://www.graphviz.org/download/) required by this package has to be installed manually. 99% of the code will work without this: all except image generation.
 
 ## Usage
 
