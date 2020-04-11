@@ -68,5 +68,24 @@ class Tree:
 		a=""
 		for node in self.nodes:
 			for child in node.children:
-				a+=f"\"{node.name}\"->\"{child.name}\","
+				a+=f"\"{node.path}\"->\"{child.path}\","
 		return "{"+a[:-1]+"}"
+
+	def dot(self):
+		a="graph {\nrankdir=LR;\nsplines=true;\n"
+		# node aliases
+		for node in self.nodes:
+			a+=f"\"{node.path}\" [label=\"{node.name}\"];\n"
+
+		# node connections
+		for node in self.nodes:
+			if node.children: # [] is False
+				a += f"\"{node.path}\"" + " -- {{ \"{}\" }}; \n".format("\" \"".join([child.path for child in node.children]))
+		return a+"\n}"
+
+	def export(self,filename):
+		mode = "default" if filename.endswith(".txt") else ("dot" if filename.endswith(".gv") else "association")
+		with open(filename,"w",encoding="utf-8") as f:
+			to_print = self if mode=="default" else (self.association() if mode=="association" else (self.dot() if mode=="dot" else ""))
+			if to_print: # "" is False
+				print(to_print,file=f)

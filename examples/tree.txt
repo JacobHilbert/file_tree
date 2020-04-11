@@ -1,0 +1,29 @@
+file_tree
+├── examples
+│   ├── gen_tree_gv.py
+│   └── gen_tree_txt.py
+├── file_tree
+│   ├── __pycache__
+│   │   ├── __init__.cpython-37.pyc
+│   │   ├── __main__.cpython-37.pyc
+│   │   ├── node.cpython-37.pyc
+│   │   ├── tree.cpython-37.pyc
+│   │   └── utils.cpython-37.pyc
+│   ├── __init__.py
+│   ├── __main__.py
+│   ├── node.py
+│   ├── tree.py
+│   └── utils.py
+├── file_tree.egg-info
+│   ├── PKG-INFO
+│   ├── SOURCES.txt
+│   ├── dependency_links.txt
+│   ├── not-zip-safe
+│   ├── requires.txt
+│   └── top_level.txt
+├── LICENSE
+├── README.md
+└── setup.py
+
+5 directories.
+21 files.

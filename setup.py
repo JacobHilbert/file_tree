@@ -8,4 +8,8 @@ author_email="jacob.hilbert.tree@gmail.com",
 packages=["file_tree"],
 license="LICENSE",
 description="Non-recursive way to get GNU tree functionality",
+install_requires=[
+          'graphviz',
+      ],
+      zip_safe=False,
 )

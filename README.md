@@ -3,11 +3,15 @@ Python package to get the [GNU tree](https://linux.die.net/man/1/tree) functiona
 
 ## Installation
 
-Download this repository, open a terminal on it, and run:
+Clone repo, and run `pip install`.
 
 ```
+$ git clone git@github.com:JacobHilbert/file_tree.git
+$ cd file_tree
 $ pip install -e .
 ```
+
+requires [graphviz](https://github.com/xflr6/graphviz), installed automatically via `pip`.
 
 ## Usage
 
@@ -26,6 +30,47 @@ You only need to import the Tree class:
 >>> print(Tree("./path/to/dir",include_files=True,include_hidden=True)) # this will print the tree
 ```
 
+## example
+
+This very repository:
+
+```python
+>>> from file_tree import Tree
+>>> print(Tree("./file_tree"))
+#file_tree
+#├── examples
+#│   ├── gen_tree_gv.py
+#│   └── gen_tree_txt.py
+#├── file_tree
+#│   ├── __pycache__
+#│   │   ├── __init__.cpython-37.pyc
+#│   │   ├── __main__.cpython-37.pyc
+#│   │   ├── node.cpython-37.pyc
+#│   │   ├── tree.cpython-37.pyc
+#│   │   └── utils.cpython-37.pyc
+#│   ├── __init__.py
+#│   ├── __main__.py
+#│   ├── node.py
+#│   ├── tree.py
+#│   └── utils.py
+#├── file_tree.egg-info
+#│   ├── PKG-INFO
+#│   ├── SOURCES.txt
+#│   ├── dependency_links.txt
+#│   ├── not-zip-safe
+#│   ├── requires.txt
+#│   └── top_level.txt
+#├── LICENSE
+#├── README.md
+#└── setup.py
+#
+#5 directories.
+#21 files.
+>>> Tree("./file_tree").export("tree.gv","dot")
+$ dot -Tpng tree.gv -o tree.png # render the tree image
+```
+
+![sample image](./examples/tree.gv.png)
 
 
 ## Structure
@@ -110,42 +155,11 @@ You only need to import the Tree class:
         - fix last one with an "ell"
 - `association()`
     - run through all nodes, export their children relation, bob's your uncle.
-- `export_dot_graph()`
-    - `NotImplemented` error.
-- `export_tree(file)`
-    - write `Tree.__str__()` to file
+- `dot()`
+    - generates a `.gv` file containing the tree in dot language
+- `export(filename)`
+    - write the tree. If `filename` ends with `.gv`, writes the dot file, if ends in `.txt`, writes the Unicode console version; else, writes the association. 
 
+## To Do
 
-## example
-
-This very repository:
-
-```python
->>> from file_tree import Tree
->>> print(Tree())
-'''
-file_tree
-├── file_tree
-│   ├── __pycache__
-│   │   ├── __init__.cpython-37.pyc
-│   │   ├── node.cpython-37.pyc
-│   │   ├── tree.cpython-37.pyc
-│   │   └── utils.cpython-37.pyc
-│   ├── __init__.py
-│   ├── __main__.py
-│   ├── node.py
-│   ├── tree.py
-│   └── utils.py
-├── file_tree.egg-info
-│   ├── PKG-INFO
-│   ├── SOURCES.txt
-│   ├── dependency_links.txt
-│   └── top_level.txt
-├── LICENSE
-├── README.md
-└── setup.py
-
-4 directories.
-16 files.
-'''
-```
+It would be cool to facilitate directory elimination.

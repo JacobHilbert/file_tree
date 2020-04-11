@@ -1,0 +1,37 @@
+graph {
+rankdir=LR;
+splines=true;
+"./file_tree" [label="file_tree"];
+"./file_tree/examples" [label="examples"];
+"./file_tree/examples/gen_tree_gv.py" [label="gen_tree_gv.py"];
+"./file_tree/examples/gen_tree_txt.py" [label="gen_tree_txt.py"];
+"./file_tree/examples/tree.txt" [label="tree.txt"];
+"./file_tree/file_tree" [label="file_tree"];
+"./file_tree/file_tree/__pycache__" [label="__pycache__"];
+"./file_tree/file_tree/__pycache__/__init__.cpython-37.pyc" [label="__init__.cpython-37.pyc"];
+"./file_tree/file_tree/__pycache__/__main__.cpython-37.pyc" [label="__main__.cpython-37.pyc"];
+"./file_tree/file_tree/__pycache__/node.cpython-37.pyc" [label="node.cpython-37.pyc"];
+"./file_tree/file_tree/__pycache__/tree.cpython-37.pyc" [label="tree.cpython-37.pyc"];
+"./file_tree/file_tree/__pycache__/utils.cpython-37.pyc" [label="utils.cpython-37.pyc"];
+"./file_tree/file_tree/__init__.py" [label="__init__.py"];
+"./file_tree/file_tree/__main__.py" [label="__main__.py"];
+"./file_tree/file_tree/node.py" [label="node.py"];
+"./file_tree/file_tree/tree.py" [label="tree.py"];
+"./file_tree/file_tree/utils.py" [label="utils.py"];
+"./file_tree/file_tree.egg-info" [label="file_tree.egg-info"];
+"./file_tree/file_tree.egg-info/PKG-INFO" [label="PKG-INFO"];
+"./file_tree/file_tree.egg-info/SOURCES.txt" [label="SOURCES.txt"];
+"./file_tree/file_tree.egg-info/dependency_links.txt" [label="dependency_links.txt"];
+"./file_tree/file_tree.egg-info/not-zip-safe" [label="not-zip-safe"];
+"./file_tree/file_tree.egg-info/requires.txt" [label="requires.txt"];
+"./file_tree/file_tree.egg-info/top_level.txt" [label="top_level.txt"];
+"./file_tree/LICENSE" [label="LICENSE"];
+"./file_tree/README.md" [label="README.md"];
+"./file_tree/setup.py" [label="setup.py"];
+"./file_tree" -- { "./file_tree/examples" "./file_tree/file_tree" "./file_tree/file_tree.egg-info" "./file_tree/LICENSE" "./file_tree/README.md" "./file_tree/setup.py" }; 
+"./file_tree/examples" -- { "./file_tree/examples/gen_tree_gv.py" "./file_tree/examples/gen_tree_txt.py" "./file_tree/examples/tree.txt" }; 
+"./file_tree/file_tree" -- { "./file_tree/file_tree/__pycache__" "./file_tree/file_tree/__init__.py" "./file_tree/file_tree/__main__.py" "./file_tree/file_tree/node.py" "./file_tree/file_tree/tree.py" "./file_tree/file_tree/utils.py" }; 
+"./file_tree/file_tree/__pycache__" -- { "./file_tree/file_tree/__pycache__/__init__.cpython-37.pyc" "./file_tree/file_tree/__pycache__/__main__.cpython-37.pyc" "./file_tree/file_tree/__pycache__/node.cpython-37.pyc" "./file_tree/file_tree/__pycache__/tree.cpython-37.pyc" "./file_tree/file_tree/__pycache__/utils.cpython-37.pyc" }; 
+"./file_tree/file_tree.egg-info" -- { "./file_tree/file_tree.egg-info/PKG-INFO" "./file_tree/file_tree.egg-info/SOURCES.txt" "./file_tree/file_tree.egg-info/dependency_links.txt" "./file_tree/file_tree.egg-info/not-zip-safe" "./file_tree/file_tree.egg-info/requires.txt" "./file_tree/file_tree.egg-info/top_level.txt" }; 
+
+}
